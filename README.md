@@ -15,11 +15,17 @@ docker build \
     .
 ```
 
-### Run Example
+### Run Simple Example
 ```shell
 export ZOOKEEPER_VERSION=3.6.2
 docker run --init -it --rm \
     --name zookeeper \
     -p 2181:2181 \
     ${REGISTRY}/apache/zookeeper:${ZOOKEEPER_VERSION}
+```
+
+### Run Compose Example
+```shell
+export ZOOKEEPER_VERSION=3.6.2
+docker-compose up
 ```
