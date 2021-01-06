@@ -1,0 +1,16 @@
+{% if ZK_NODES is defined %}
+tickTime={{  ZK_TICK_TIME | default('2000') }}
+dataDir=/var/lib/zookeeper
+clientPort=2181
+initLimit={{  ZK_INIT_LIMIT | default('5') }}
+syncLimit={{  ZK_SYNC_LIMIT | default('2') }}
+electionPortBindRetry=0
+{% set ZK_NODE_LIST = ZK_NODES.split(',') %}
+{% for ZK_NODE in ZK_NODE_LIST %}
+server.{{ loop.index }}={{ ZK_NODE }}:2888:3888
+{% endfor %}
+{% else %}
+tickTime={{  ZK_TICK_TIME | default('2000') }}
+dataDir=/var/lib/zookeeper
+clientPort=2181
+{% endif %}

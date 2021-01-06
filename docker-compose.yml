@@ -1,0 +1,43 @@
+version: '3.1'
+
+volumes:
+    zk1-data:
+    zk2-data:
+    zk3-data:
+
+services:
+  zk1:
+    image: ${REGISTRY}/apache/zookeeper:${ZOOKEEPER_VERSION}
+    restart: always
+    volumes:
+       - zk1-data:/var/lib/zookeeper
+    hostname: zk1
+    ports:
+      - 2181:2181
+    environment:
+      ZK_NODE_ID: 1
+      ZK_NODES: zk1,zk2,zk3
+
+  zk2:
+    image: ${REGISTRY}/apache/zookeeper:${ZOOKEEPER_VERSION}
+    restart: always
+    volumes:
+       - zk3-data:/var/lib/zookeeper
+    hostname: zk2
+    ports:
+      - 2182:2181
+    environment:
+      ZK_NODE_ID: 2
+      ZK_NODES: zk1,zk2,zk3
+
+  zk3:
+    image: ${REGISTRY}/apache/zookeeper:${ZOOKEEPER_VERSION}
+    restart: always
+    volumes:
+       - zk3-data:/var/lib/zookeeper
+    hostname: zk3
+    ports:
+      - 2183:2181
+    environment:
+      ZK_NODE_ID: 3
+      ZK_NODES: zk1,zk2,zk3
