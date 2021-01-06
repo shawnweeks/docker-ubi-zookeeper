@@ -1,12 +1,13 @@
+### Download Packages
 ```shell
 export ZOOKEEPER_VERSION=3.6.2
-
 wget https://archive.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/apache-zookeeper-${ZOOKEEPER_VERSION}-bin.tar.gz
 
 ```
 
 ### Build Example
 ```shell
+export ZOOKEEPER_VERSION=3.6.2
 docker build \
     -t ${REGISTRY}/apache/zookeeper:${ZOOKEEPER_VERSION} \
     --build-arg BASE_REGISTRY=${REGISTRY} \
@@ -15,7 +16,8 @@ docker build \
 ```
 
 ### Run Example
-```
+```shell
+export ZOOKEEPER_VERSION=3.6.2
 docker run --init -it --rm \
     --name zookeeper \
     -p 2181:2181 \
