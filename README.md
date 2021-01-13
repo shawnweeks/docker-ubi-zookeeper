@@ -15,6 +15,12 @@ docker build \
     .
 ```
 
+### Push to Registry
+```shell
+export ZOOKEEPER_VERSION=3.6.2
+docker push ${REGISTRY}/apache/zookeeper:${ZOOKEEPER_VERSION}
+```
+
 ### Run Simple Example
 ```shell
 export ZOOKEEPER_VERSION=3.6.2
